@@ -741,7 +741,7 @@ def WlanScan(hClientHandle, pInterfaceGuid, ssid=""):
         DWORD WINAPI WlanScan(
             _In_        HANDLE hClientHandle,
             _In_        const GUID *pInterfaceGuid,
-            _In_opt_    const PDOT11_SSID pDot11Ssid,
+            _In_opt_    const PDOT11_SSID pDot11_ssid,
             _In_opt_    const PWLAN_RAW_DATA pIeData,
             _Reserved_  PVOID pReserved
         );
@@ -782,7 +782,7 @@ def WlanGetNetworkBssList(hClientHandle, pInterfaceGuid):
         DWORD WINAPI WlanGetNetworkBssList(
             _In_        HANDLE hClientHandle,
             _In_        const GUID *pInterfaceGuid,
-            _In_        const  PDOT11_SSID pDot11Ssid,
+            _In_        const  PDOT11_SSID pDot11_ssid,
             _In_        DOT11_BSS_TYPE dot11BssType,
             _In_        BOOL bSecurityEnabled,
             _Reserved_  PVOID pReserved,
@@ -791,14 +791,14 @@ def WlanGetNetworkBssList(hClientHandle, pInterfaceGuid):
     """
     func_ref = wlanapi.WlanGetNetworkBssList
     # TODO: handle the arguments descibed below.
-    # pDot11Ssid - When set to NULL, the returned list contains all of
+    # pDot11_ssid - When set to NULL, the returned list contains all of
     # available BSS entries on a wireless LAN interface.
     # dot11BssType - The BSS type of the network. This parameter is ignored if
-    # the SSID of the network for the BSS list is unspecified (the pDot11Ssid
+    # the SSID of the network for the BSS list is unspecified (the pDot11_ssid
     # parameter is NULL).
     # bSecurityEnabled - A value that indicates whether security is enabled on
     # the network. This parameter is only valid when the SSID of the network
-    # for the BSS list is specified (the pDot11Ssid parameter is not NULL).
+    # for the BSS list is specified (the pDot11_ssid parameter is not NULL).
     func_ref.argtypes = [HANDLE,
                          POINTER(GUID),
                          c_void_p,
@@ -982,7 +982,7 @@ class WLAN_CONNECTION_PARAMETERS(Structure):
         typedef struct _WLAN_CONNECTION_PARAMETERS {
           WLAN_CONNECTION_MODE wlanConnectionMode;
           LPCWSTR              strProfile;
-          PDOT11_SSID          pDot11Ssid;
+          PDOT11_SSID          pDot11_ssid;
           PDOT11_BSSID_LIST    pDesiredBssidList;
           DOT11_BSS_TYPE       dot11BssType;
           DWORD                dwFlags;

@@ -359,9 +359,9 @@ def connect(wireless_interface, connection_params):
         dot11Ssid = DOT11_SSID()
         dot11Ssid.SSID = connection_params["ssid"]
         dot11Ssid.SSIDLength = len(connection_params["ssid"])
-        cnxp.pDot11Ssid = pointer(dot11Ssid)
+        cnxp.pDot11_ssid = pointer(dot11Ssid)
     else:
-        cnxp.pDot11Ssid = NULL
+        cnxp.pDot11_ssid = NULL
     # bssidList
     # NOTE: Before this can actually support multiple entries,
     #   the DOT11_BSSID_LIST structure must be rewritten to
